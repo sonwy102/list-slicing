@@ -44,10 +44,10 @@ def custom_append(input_list, value):
         >>> custom_append(notes, 'Re')
         >>> notes == ['Do', 'Re', 'Mi', 'Fa', 'So', 'La', 'Ti', 'Do', 'Re']
         True
-
+    
     """
-
-    pass
+    length = custom_len(input_list)
+    input_list[length:length+1] = [value]
 
 
 def custom_extend(input_list, second_list):
@@ -65,8 +65,9 @@ def custom_extend(input_list, second_list):
         True
 
     """
-
-    pass
+    for i in range(custom_len(second_list)):
+        length = custom_len(input_list)
+        input_list[length:length+1] = [second_list[i]]
 
 
 def custom_insert(input_list, index, value):
@@ -81,10 +82,9 @@ def custom_insert(input_list, index, value):
         >>> custom_insert(months, 1, 'Feb')
         >>> months == ['Jan', 'Feb', 'Mar']
         True
-
     """
-
-    pass
+    input_list[index:index+1] = [value,input_list[index]]
+    
 
 
 def custom_remove(input_list, value):
@@ -102,6 +102,11 @@ def custom_remove(input_list, value):
         True
 
     """
+
+    for i in range(custom_len(input_list)):
+        if input_list[i] == value:
+            input_list[i:i+1] = []
+            break
 
     pass
 
@@ -121,8 +126,10 @@ def custom_pop(input_list):
         ['Jan', 'Feb']
 
     """
-
-    return None
+    length = custom_len(input_list)
+    elem = input_list[length-1]
+    input_list[length-1:length] = []
+    return elem
 
 
 def custom_index(input_list, value):
@@ -137,8 +144,13 @@ def custom_index(input_list, value):
         1
 
     """
-
-    return 0
+    index = None
+    for i in range(custom_len(input_list)):
+        if input_list[i] == value:
+            index = i
+            break
+        
+    return index
 
 
 def custom_count(input_list, value):
